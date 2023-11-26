@@ -1,0 +1,9 @@
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/security-trial
+    username: sec_test
+    password: 123
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
