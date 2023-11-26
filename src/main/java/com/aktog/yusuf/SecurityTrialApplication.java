@@ -24,11 +24,13 @@ public class SecurityTrialApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+/*
         System.out.println("=>");
         userService.createUser(new CreateUserRequest("yusuf","test","123", Set.of(UserRole.ROLE_USER)));
         userService.createUser(new CreateUserRequest("yusuf","admin","123", Set.of(UserRole.ROLE_ADMIN)));
         userService.createUser(new CreateUserRequest("yusuf","eng","123", Set.of(UserRole.ROLE_ENGINEER)));
 
+*/
 
     }
 }

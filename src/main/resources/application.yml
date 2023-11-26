@@ -1,9 +1,13 @@
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/security-trial
-    username: sec_test
+    url: jdbc:postgresql://localhost:5432/jwt-test
+    username: jwt-test
     password: 123
   jpa:
     hibernate:
       ddl-auto: create-drop
+
+
+jwt:
+  expiry: 18_000_000
