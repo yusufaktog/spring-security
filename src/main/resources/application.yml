@@ -2,11 +2,11 @@
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/jwt-test
-    username: jwt-test
+    username: jwt_test
     password: 123
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
 
 
 jwt:

@@ -3,12 +3,10 @@ package com.aktog.yusuf.security;
 
 import com.aktog.yusuf.service.JwtAuthFilter;
 import com.aktog.yusuf.service.UserService;
-import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -16,7 +14,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -46,13 +43,14 @@ public class SecurityConfig {
         return security
                 .csrf(AbstractHttpConfigurer::disable)
                 .formLogin(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(x -> x.requestMatchers("/user/**").permitAll())
+                .authorizeHttpRequests(x -> x.requestMatchers("/auth/**").permitAll())
+                .authorizeHttpRequests(x -> x.requestMatchers("/greeting/admin/**").hasRole("ADMIN"))
                 .authorizeHttpRequests(x -> x.requestMatchers("/greeting/**").permitAll())
                 .authorizeHttpRequests(x -> x.anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(x -> x.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
-                .addFilterAfter(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 
@@ -70,8 +68,4 @@ public class SecurityConfig {
 
     }
 
-    @Bean
-    PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
 }

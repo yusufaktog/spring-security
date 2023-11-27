@@ -1,14 +1,18 @@
 package com.aktog.yusuf.service;
 
 
+import com.aktog.yusuf.dto.AuthRequest;
 import com.aktog.yusuf.dto.CreateUserRequest;
 import com.aktog.yusuf.model.User;
 import com.aktog.yusuf.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
@@ -18,11 +22,14 @@ import java.util.Optional;
 public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final PasswordEncoder bCryptPasswordEncoder;
 
-    public UserService(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+
+    public UserService(UserRepository userRepository,
+                       PasswordEncoder bCryptPasswordEncoder) {
         this.userRepository = userRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+
     }
 
     public Optional<User> findByUsername(String username) {
@@ -55,8 +62,11 @@ public class UserService implements UserDetailsService {
         return user.getId() + " has been deleted...";
     }
 
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return findByUsername(username).orElseThrow(EntityNotFoundException::new);
     }
+
+
 }

@@ -1,13 +1,9 @@
 package com.aktog.yusuf;
 
-import com.aktog.yusuf.dto.CreateUserRequest;
-import com.aktog.yusuf.model.enumation.UserRole;
 import com.aktog.yusuf.service.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.util.Set;
 
 @SpringBootApplication
 public class SecurityTrialApplication implements CommandLineRunner {
