@@ -1,14 +1,11 @@
 package com.aktog.yusuf.service;
 
 
-import com.aktog.yusuf.dto.AuthRequest;
 import com.aktog.yusuf.dto.CreateUserRequest;
 import com.aktog.yusuf.model.User;
 import com.aktog.yusuf.repository.UserRepository;
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -38,6 +35,10 @@ public class UserService implements UserDetailsService {
 
     public User createUser(CreateUserRequest request) {
 
+        if(userNameExists(request.username())){
+            throw new EntityExistsException("User name " + request.username() + " already exists.");
+        }
+
         User user = User.builder()
                 .name(request.name())
                 .username(request.username())
@@ -66,6 +67,11 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return findByUsername(username).orElseThrow(EntityNotFoundException::new);
+    }
+
+    public boolean userNameExists(String username){
+        User user = userRepository.findUserByUsername(username).orElse(null);
+        return Objects.nonNull(user);
     }
 
 

@@ -11,9 +11,17 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 
 
-    @GetMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/admin")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String authenticationTest(){
-        return "only available if authenticated";
+        return "only available if admin";
     }
+
+    @GetMapping("/user")
+    @PreAuthorize("hasAuthority('USER')")
+    public String authenticationTest2(){
+        return "only available if user";
+    }
+
+
 }
