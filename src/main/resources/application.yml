@@ -11,3 +11,6 @@ spring:
 
 jwt:
   expiry: 18_000_000
+
+server:
+  port: 1035
