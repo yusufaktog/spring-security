@@ -33,7 +33,7 @@ public class User implements UserDetails {
 
 
     @ElementCollection(targetClass = UserRole.class, fetch = FetchType.EAGER)
-    @JoinTable(name = "authorities", joinColumns = @JoinColumn(name = "id"))
+    @JoinTable(name = "authorities", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
     private Set<UserRole> roles;
