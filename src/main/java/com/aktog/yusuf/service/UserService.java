@@ -1,6 +1,4 @@
 package com.aktog.yusuf.service;
-
-
 import com.aktog.yusuf.dto.CreateUserRequest;
 import com.aktog.yusuf.model.User;
 import com.aktog.yusuf.repository.UserRepository;
@@ -43,6 +41,7 @@ public class UserService implements UserDetailsService {
                 .name(request.name())
                 .username(request.username())
                 .password(bCryptPasswordEncoder.encode(request.password()))
+                .mail(request.mail())
                 .roles(request.roles())
                 .accountNonExpired(true)
                 .accountNonLocked(true)

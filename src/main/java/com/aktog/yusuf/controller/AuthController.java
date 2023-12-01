@@ -6,8 +6,10 @@ import com.aktog.yusuf.dto.CreateUserRequest;
 import com.aktog.yusuf.model.User;
 import com.aktog.yusuf.service.JwtTokenGenerator;
 import com.aktog.yusuf.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequestMapping("/auth")
@@ -22,16 +24,17 @@ public class AuthController {
     }
 
     @PostMapping("/generate")
-    public String generateJwtToken(@RequestBody AuthRequest request){
+    public String generateJwtToken(@RequestBody @Valid AuthRequest request) {
         return jwtTokenGenerator.generateJwtToken(request);
     }
+
     @PostMapping("/create-user")
-    public ResponseEntity<User> createUser(@RequestBody CreateUserRequest request){
+    public ResponseEntity<User> createUser(@RequestBody @Valid CreateUserRequest request) {
         return ResponseEntity.ok(userService.createUser(request));
     }
 
     @DeleteMapping("/delete-user/{id}")
-    public ResponseEntity<String> deleteUser(@PathVariable  Long id){
+    public ResponseEntity<String> deleteUser(@PathVariable Long id) {
         return ResponseEntity.ok(userService.deleteUserById(id));
     }
 
