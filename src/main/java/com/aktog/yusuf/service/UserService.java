@@ -36,6 +36,9 @@ public class UserService implements UserDetailsService {
         if(userNameExists(request.username())){
             throw new EntityExistsException("User name " + request.username() + " already exists.");
         }
+        if(mailExists(request.mail())){
+            throw new EntityExistsException("Mail " + request.mail() + " already exists.");
+        }
 
 
         User user = User.builder()
@@ -52,6 +55,8 @@ public class UserService implements UserDetailsService {
 
         return userRepository.save(user);
     }
+
+
 
     public String deleteUserById(Long id) {
         User user = userRepository.findById(id).orElse(null);
@@ -71,6 +76,11 @@ public class UserService implements UserDetailsService {
 
     public boolean userNameExists(String username){
         User user = userRepository.findUserByUsername(username).orElse(null);
+        return Objects.nonNull(user);
+    }
+
+    private boolean mailExists(String mail) {
+        User user = userRepository.findUserByMail(mail).orElse(null);
         return Objects.nonNull(user);
     }
 

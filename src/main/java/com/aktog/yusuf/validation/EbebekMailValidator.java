@@ -3,8 +3,7 @@ package com.aktog.yusuf.validation;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
-public class EbebekMailValidator implements
-        ConstraintValidator<EbebekMail, String> {
+public class EbebekMailValidator implements ConstraintValidator<EbebekMail, String> {
     @Override
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
         final String ebebekMailDomain = "@ebebek.com";

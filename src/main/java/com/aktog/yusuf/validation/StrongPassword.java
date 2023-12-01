@@ -1,20 +1,21 @@
 package com.aktog.yusuf.validation;
 
+
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
-import org.hibernate.validator.internal.constraintvalidators.bv.NotNullValidator;
 
 import java.lang.annotation.*;
 
 @Documented
-@Constraint(validatedBy = EbebekMailValidator.class)
+@Constraint(validatedBy = StrongPasswordValidator.class)
 @Target({ElementType.METHOD,ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface EbebekMail {
-
-    String message() default "Invalid email";
+public @interface StrongPassword {
+    String message() default "Password should consists of at least;" +
+            "One special character, one uppercase & one lowercase and one digit";
 
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};
+
 }
