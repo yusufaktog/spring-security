@@ -15,7 +15,8 @@ public class SecurityTrialApplication implements CommandLineRunner {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(SecurityTrialApplication.class, args);
+        System.out.println(((char) 64));
+       /* SpringApplication.run(SecurityTrialApplication.class, args);*/
     }
 
     @Override

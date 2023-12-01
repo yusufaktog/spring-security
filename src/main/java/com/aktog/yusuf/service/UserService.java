@@ -37,6 +37,7 @@ public class UserService implements UserDetailsService {
             throw new EntityExistsException("User name " + request.username() + " already exists.");
         }
 
+
         User user = User.builder()
                 .name(request.name())
                 .username(request.username())
