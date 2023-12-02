@@ -3,13 +3,10 @@ package com.aktog.yusuf.dto;
 import com.aktog.yusuf.model.enumation.UserRole;
 import com.aktog.yusuf.validation.EbebekMail;
 import com.aktog.yusuf.validation.StrongPassword;
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.*;
-import org.springframework.stereotype.Component;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
-
-import java.util.Objects;
 import java.util.Set;
 
 

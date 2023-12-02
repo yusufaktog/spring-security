@@ -2,7 +2,6 @@ package com.aktog.yusuf.validation;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
-import org.hibernate.validator.internal.constraintvalidators.bv.NotNullValidator;
 
 import java.lang.annotation.*;
 

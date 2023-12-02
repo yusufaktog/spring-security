@@ -11,8 +11,8 @@ import java.lang.annotation.*;
 @Target({ElementType.METHOD,ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface StrongPassword {
-    String message() default "Password should consists of at least;" +
-            "One special character, one uppercase & one lowercase and one digit";
+    String message() default "Password should consists of at least." +
+            " One special character, one uppercase & one lowercase and one digit";
 
     Class<?>[] groups() default {};
 
