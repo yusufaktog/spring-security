@@ -13,7 +13,7 @@ services:
       - '3306:3306'
 
   app:
-    image: jwt-auth:latest
+    image: spring-security:latest
     container_name: app
     restart: always
     environment:
