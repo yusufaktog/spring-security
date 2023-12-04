@@ -7,7 +7,9 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-
+  sql:
+    init:
+      mode: always
 
 jwt:
   expiry: 18_000_000
